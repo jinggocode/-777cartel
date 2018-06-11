@@ -64,9 +64,15 @@
             <select name="group_id" id="group_id" class="form-control">
               <option value=""></option>
               @foreach ($group as $value)
-                <option value="{{$value->id}}">{{$value->description}}</option>
+                <option {{(set_value('group_id') == $value->id)?'selected':''}} value="{{$value->id}}">{{$value->description}}</option>
               @endforeach
             </select>
+          </div>
+        </div> 
+        <div class="form-group">
+          <label for="url" class="col-sm-2 control-label">URL</label>
+          <div class="col-sm-6">
+            <input type="text" name="url" class="form-control" value="{{set_value('url')}}" id="url">
           </div>
         </div> 
         <div class="form-group">

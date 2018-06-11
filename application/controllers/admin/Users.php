@@ -43,14 +43,10 @@ class Users extends MY_Controller
 		$config['per_page'] = 10;
 
 		$data = $this->user_model
-			->with_group()
-			->where('group_id', 1)
-			->where('group_id','=', 4, TRUE)
+			->with_group() 
 			->limit($config['per_page'], $offset = $start)
 			->get_all();
-		$config['total_rows'] = $this->user_model 
-			->where('group_id', 1)
-			->where('group_id','=', 4, TRUE)
+		$config['total_rows'] = $this->user_model  
 			->count_rows();
 
 		$this->load->library('pagination');
@@ -79,7 +75,7 @@ class Users extends MY_Controller
 
 	public function add()
 	{
-		$data['group'] = $this->group_model->where('id', 1)->where('id','=', 4, TRUE)->get_all();
+		$data['group'] = $this->group_model->get_all();
 
 		$this->generateCsrf();
 		$this->render('admin/users/add', $data);
@@ -94,9 +90,10 @@ class Users extends MY_Controller
         ));   
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]|max_length[12]'); 
 		$this->form_validation->set_rules('password_confirm', 'Konfirmasi Password', 'trim|required|matches[password]');  
+		$this->form_validation->set_rules('url', 'Url', 'trim|max_length[255]'); 
 
 		if ($this->form_validation->run() == false) { 
-			$data['group'] = $this->group_model->where('id', 1)->where('id','=', 4, TRUE)->get_all();
+			$data['group'] = $this->group_model->get_all();
 
 			$this->generateCsrf();
 			$data['page'] = $this->uri->segment(2);
@@ -120,7 +117,7 @@ class Users extends MY_Controller
 	public function edit($id)
 	{
 		$data['data'] = $this->user_model->get($id);
-		$data['group'] = $this->group_model->where('id', 1)->where('id','=', 4, TRUE)->get_all();
+		$data['group'] = $this->group_model->get_all();
 
 		$this->generateCsrf();
 		$this->render('admin/users/edit', $data);
@@ -134,7 +131,7 @@ class Users extends MY_Controller
 
 		if ($this->form_validation->run() == false) {
 			$data['data'] = $this->input->post();
-			$data['group'] = $this->group_model->where('id', 1)->where('id','=', 4, TRUE)->get_all();
+			$data['group'] = $this->group_model->get_all();
 
 			$this->generateCsrf();
 			$this->render('admin/users/edit', $data);

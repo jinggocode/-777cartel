@@ -53,13 +53,9 @@ class Auth extends MY_Controller {
 			$user = $this->ion_auth->user()->row();
 
 			if ($user->group_id === "1") {
-				redirect('admin/homepage', 'refresh');
+				redirect('admin/homepage', 'refresh'); 
 			} else if ($user->group_id === "2") {
-				redirect('dosen/homepage', 'refresh');
-			} else if ($user->group_id === "3") {
-				redirect('mahasiswa/homepage', 'refresh');
-			} else if ($user->group_id === "4") {
-				redirect('pimpinan/homepage', 'refresh');
+				redirect('user/homepage', 'refresh'); 
 			} else { 
 				redirect('auth/logout', 'refresh');
 			}
@@ -81,13 +77,9 @@ class Auth extends MY_Controller {
 				$user = $this->ion_auth->user()->row();
 
 				if ($user->group_id === "1") {
-					redirect('admin/homepage', 'refresh');
+					redirect('admin/homepage', 'refresh'); 
 				} else if ($user->group_id === "2") {
-					redirect('dosen/homepage', 'refresh');
-				} else if ($user->group_id === "3") {
-					redirect('mahasiswa/homepage', 'refresh');
-				} else if ($user->group_id === "4") {
-					redirect('pimpinan/homepage', 'refresh');
+					redirect('user/homepage', 'refresh'); 
 				} else { 
 					redirect('auth/logout', 'refresh');
 				}
@@ -459,7 +451,7 @@ class Auth extends MY_Controller {
 			$this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'required|valid_email|is_unique[' . $tables['users'] . '.email]');
 		}
 		$this->form_validation->set_rules('first_name', 'Nama', 'trim|required|max_length[50]');
-		$this->form_validation->set_rules('phone', $this->lang->line('create_user_validation_phone_label'), 'trim');
+		// $this->form_validation->set_rules('phone', $this->lang->line('create_user_validation_phone_label'), 'trim');
 		$this->form_validation->set_rules('password', $this->lang->line('create_user_validation_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
 		$this->form_validation->set_rules('password_confirm', $this->lang->line('create_user_validation_password_confirm_label'), 'required');
 
@@ -495,12 +487,12 @@ class Auth extends MY_Controller {
 				'placeholder' => 'Masukan Nama',
 				'value' => $this->form_validation->set_value('first_name'),
 				);
-			$this->data['email'] = array(
-				'name'  => 'email',
-				'id'    => 'email',
+			$this->data['identity'] = array(
+				'name'  => 'identity',
+				'id'    => 'identity',
 				'type'  => 'text',
 				'class' => 'form-control',
-				'placeholder' => 'Masukan Email',
+				'placeholder' => 'Masukan Username',
 				'value' => $this->form_validation->set_value('email'),
 				);
 			$this->data['phone'] = array(
