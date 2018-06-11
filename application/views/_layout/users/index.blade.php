@@ -56,11 +56,7 @@ if ($user->group_id == 1){
 </head>
 <body class="hold-transition skin-blue layout-top-nav">
 <!-- Site wrapper -->
-<div class="wrapper">
-
-  <header class="main-header">
-    @include('_layout/users/navbar')
-  </header>
+<div class="wrapper"> 
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
