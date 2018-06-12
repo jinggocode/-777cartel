@@ -9,6 +9,7 @@
         <li class="header">DAFTAR MENU</li>
         <li class="{{($page == '' || $page == 'homepage')?'active':''}}"><a href="{{site_url('admin/homepage')}}"><i class="fa fa-dashboard"></i> <span>Beranda</span></a></li> 
         <li class="{{($page == 'users')?'active':''}}"><a href="{{site_url('admin/users')}}"><i class="fa fa-user"></i> <span>Data Pengguna Aplikasi</span></a></li>
+        <li class="{{($page == 'url')?'active':''}}"><a target="_BLANK" href="{{site_url('admin/url')}}"><i class="fa fa-external-link"></i> <span>Open URL</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->

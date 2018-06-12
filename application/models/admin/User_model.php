@@ -17,7 +17,7 @@ class User_model extends MY_Model
 	public function search($search_data)
 	{
         $start = $this->uri->segment(5, 0);
-		$config['base_url'] = base_url() . 'admin/master/angkatan/search/';
+		$config['base_url'] = base_url() . 'admin/users/index';
 		if (count($_GET) > 0) $config['suffix'] = '?' . http_build_query($_GET, '', "&");
 		$config['first_url'] = $config['base_url'].'?'.http_build_query($_GET);
 
@@ -49,13 +49,14 @@ class User_model extends MY_Model
         	$sort_with = '';
         }
 
-		$data = $this->angkatan_model
+		$data = $this->user_model
 			->limit($config['per_page'],$offset=$start)
-			->where('nama', 'like', $search_data['keyword'])
+			->where('first_name', 'like', $search_data['keyword'])
+			->with_group() 
 			->order_by($sort_by, $sort_with)
 			->get_all();
-   	 	$config['total_rows'] = $this->angkatan_model
-			->where('nama', 'like', $search_data['keyword'])
+   	 	$config['total_rows'] = $this->user_model
+			->where('first_name', 'like', $search_data['keyword'])
 		  	->count_rows();
 
         $this->load->library('pagination');

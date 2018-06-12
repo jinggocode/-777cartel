@@ -11,13 +11,19 @@ class Homepage extends MY_Controller
 		parent::__construct();
 		$this->_accessable = TRUE;
 		$this->load->helper(array('dump'));
-		$this->load->model(array(''));
+		$this->load->model(array('admin/url_model'));
+		$this->load->model(array('admin/user_model'));
+		$this->load->model(array('admin/group_model'));
 	}
 
 	public function index()
 	{
+		$user = $this->ion_auth->user()->row(); 
+		$data['user'] = $this->user_model->with_group()->get($user->id);
+		$data['url'] = $this->url_model->get();
 		// 
-		$this->render('admin/home');
+		$this->generateCsrf();
+		$this->render('admin/home', $data);
 	}
 
 	public function tambah()

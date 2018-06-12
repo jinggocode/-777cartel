@@ -6,7 +6,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data Pengguna (Admin dan Pimpinan) 
+        Data Pengguna
       </h1>
     </section>
 
@@ -24,7 +24,7 @@
                 <form class="form-inline" action="{{site_url('admin/users/search')}}" method="get">
                   
                   <div class="form-group"> 
-                    <input type="text" value="{{(isset($search_data['keyword']))?$search_data['keyword']:''}}" name="keyword" class="form-control" id="keyword" placeholder="Cari Berdasarkan Judul" style="margin-right: 10px" autofocus="autofocus">
+                    <input type="text" value="{{(isset($search_data['keyword']))?$search_data['keyword']:''}}" name="keyword" class="form-control" id="keyword" placeholder="Cari Berdasarkan Nama" style="margin-right: 10px" autofocus="autofocus">
                   </div>
                   <button type="submit" class="btn btn-info"><i class="fa fa-search"></i> Cari</button> 
 
@@ -38,14 +38,6 @@
                         <option {{(isset($search_data['sort'])&& $search_data['sort'] == '2')?'selected':''}} value="2">Data Lama</option> 
                     </select>
                   </div> 
-                  <div class="form-group">  
-                    <select name="category" id="category" class="form-control" onchange="this.form.submit();">
-                        <option value="">Kategori</option> 
-                        @foreach ($category as $row)
-                          <option {{(isset($search_data['category'])&& $search_data['category'] == $row->id)?'selected':''}} value="{{$row->id}}">{{$row->nama}}</option> 
-                        @endforeach
-                    </select>
-                  </div> 
                 </div>
                 </form>
             </div>
@@ -53,10 +45,9 @@
           <table class="table table-hover table-striped">
               <thead>
                 <th style="width: 3%">No.</th> 
-                <th style="width: 20%">Nama</th>
+                <th style="width: 30%">Nama</th>
                 <th>Username</th>
-                <th>Hak Akses</th> 
-                <th>URL</th> 
+                <th>Hak Akses</th>  
                 <th>Aksi</th>
               </thead> 
               <?php if(empty($data)): ?>
@@ -70,8 +61,7 @@
                     <td>{{$start++}}.</td>  
                     <td>{{$row->first_name}}</td> 
                     <td>{{$row->username}}</td> 
-                    <td>{{$row->group->description}}</td> 
-                    <td>{{$row->url}}</td> 
+                    <td>{{$row->group->description}}</td>  
                     <td> 
                       <a href="{{site_url('admin/users/edit/'.$row->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil-square-o"></i> Edit</a>
                       <a href="{{site_url('admin/users/delete/'.$row->id)}}" onclick="return confirm('apakah anda yakin?')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</a>

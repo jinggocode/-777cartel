@@ -65,7 +65,7 @@ class Users extends MY_Controller
 	{
 		$search_data = $this->input->get();
 
-		$data = $this->user_model->search($search_data);
+		$data = $this->dosen_model->search($search_data);
 
 		$this->generateCsrf();
 		$this->render('admin/users/index', $data);
@@ -87,8 +87,9 @@ class Users extends MY_Controller
                 'is_unique'     => 'Username '.$this->input->post('username').' sudah ada'
         ));   
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]|max_length[12]'); 
-		$this->form_validation->set_rules('password_confirm', 'Konfirmasi Password', 'trim|required|matches[password]');   
-		
+		$this->form_validation->set_rules('password_confirm', 'Konfirmasi Password', 'trim|required|matches[password]');  
+		$this->form_validation->set_rules('url', 'Url', 'trim|max_length[255]'); 
+
 		if ($this->form_validation->run() == false) { 
 			$data['group'] = $this->group_model->get_all();
 

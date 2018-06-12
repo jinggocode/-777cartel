@@ -1,37 +1,29 @@
 <?php
 
 /**
- *
- */
+* 
+*/
 class Homepage extends MY_Controller
 {
-
+	
 	public function __construct()
 	{
 		parent::__construct();
-		$this->_accessable = true;
-		$this->load->helper(array('dump', 'cek_semester')); 
-		$this->load->model('admin/user_model'); 
+		$this->_accessable = TRUE;
+		$this->load->helper(array('dump'));
+		$this->load->model(array('admin/url_model'));
+		$this->load->model(array('admin/user_model'));
+		$this->load->model(array('admin/group_model'));
 	}
 
 	public function index()
-	{ 
-		$data['user'] = (object)$this->ion_auth->user()->row(); 
-
-		$this->generateCsrf();
-		$this->render('users/home', $data);
-	}
-
-	public function submit_kuesioner()
 	{
-		$data['status_selesai'] = '1';
-		$this->kuesioner_isi_model
-			->where('id_periode', $this->input->post('id_periode'))
-			->where('id_mahasiswa', $this->input->post('id_mahasiswa'))
-			->update($data);
-
-		$this->message('Terima Kasih telah melakukan pengisian kuesioner', 'success');
-		$this->go('auth/logout');
-	}
+		$user = $this->ion_auth->user()->row(); 
+		$data['user'] = $this->user_model->with_group()->get($user->id);
+		$data['url'] = $this->url_model->get();
+		// 
+		$this->generateCsrf();
+		$this->render('user/home', $data);
+	} 
 
 }
