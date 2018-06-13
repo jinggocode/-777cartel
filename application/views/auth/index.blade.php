@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Log in page</title>
+  <title>Login page</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -34,7 +34,7 @@
     <a>
       <b> 
         <center><img src="{{base_url('assets/image/logo.png')}}" class="img-responsive" width="150" alt=""></center>
-        <span style="font-size: 30px">Halaman Login</span><br> 
+        <span style="font-size: 30px">Login Page</span><br> 
       </b>
     </a>
   </div> 
