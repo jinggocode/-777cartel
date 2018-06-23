@@ -4,6 +4,7 @@
 
       <?php $page     = $this->uri->segment(2); ?>
       <?php $sub_page = $this->uri->segment(3); ?>
+      <?php $user = $this->ion_auth->user()->row();?>
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">DAFTAR MENU</li>
