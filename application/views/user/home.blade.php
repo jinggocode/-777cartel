@@ -31,7 +31,7 @@
           </div>
           <!-- /.box-header -->
           <div class="box-body">
-            @if ($url == FALSE)
+            @if ($user->url == NULL)
               <form action="{{site_url('user/url/save')}}" method="post" class="form-horizontal">
                 {{$csrf}}
                 <div class="form-group">
@@ -53,7 +53,7 @@
                 <div class="form-group">
                   <label for="url" class="col-sm-1 control-label">URL</label>
                   <div class="col-sm-6">
-                    <input type="text" name="url" class="form-control" placeholder="{{$url->url}}" id="url">
+                    <input type="text" name="url" class="form-control" placeholder="{{$user->url}}" id="url">
                   </div>
                 </div> 
                 

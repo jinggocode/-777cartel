@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2018 at 11:03 PM
+-- Generation Time: Jun 23, 2018 at 10:29 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 5.6.36
 
@@ -45,28 +45,6 @@ INSERT INTO `groups` (`id`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `url`
---
-
-CREATE TABLE `url` (
-  `id` int(11) NOT NULL,
-  `url` varchar(255) DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `url`
---
-
-INSERT INTO `url` (`id`, `url`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
-(1, 'https://vestifarm.com/', '2018-06-12 18:53:15', 1, '2018-06-12 22:45:01', 55);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `users`
 --
 
@@ -90,6 +68,7 @@ CREATE TABLE `users` (
   `last_name` varchar(50) DEFAULT NULL,
   `company` varchar(100) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
@@ -100,9 +79,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `ip_address`, `group_id`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `status_password`, `first_name`, `last_name`, `company`, `phone`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
-(1, '192.168.137.1', 1, 'admin', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', NULL, NULL, NULL, NULL, 0, 1528837313, 1, '1', 'Admin', 'Istrator', 'Admin', NULL, NULL, NULL, '2018-03-26 12:51:47', 1),
-(55, '::1', 2, 'user', '$2y$10$8DA.4DVc44ctXhzPZsQbZ.twe95VNMP5KHAY9vwkB/Dxb8ikwX8wO', '', '', NULL, NULL, NULL, NULL, 0, 1528837340, 1, '0', 'Rahmat', NULL, NULL, NULL, '2018-06-11 16:47:11', 1, '2018-06-11 17:10:42', 1);
+INSERT INTO `users` (`id`, `ip_address`, `group_id`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `status_password`, `first_name`, `last_name`, `company`, `phone`, `url`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
+(1, '::1', 1, 'admin', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', NULL, NULL, NULL, NULL, 0, 1529742191, 1, '1', 'Admin', 'Istrator', 'Admin', NULL, 'http://poliwangi.ac.id', NULL, NULL, '2018-06-23 10:20:14', 1),
+(55, '::1', 2, 'user', '$2y$10$BMvprQG5eMjTDCajEt21L.oB4K4DxFSomzMyoTBz.zyRm.VBrcLei', '', '', NULL, NULL, NULL, NULL, 0, 1529742468, 1, '0', 'Rahmat', NULL, NULL, NULL, 'https://vestifarm.com/', '2018-06-11 16:47:11', 1, '2018-06-23 10:22:38', 55);
 
 --
 -- Indexes for dumped tables
@@ -112,12 +91,6 @@ INSERT INTO `users` (`id`, `ip_address`, `group_id`, `username`, `password`, `sa
 -- Indexes for table `groups`
 --
 ALTER TABLE `groups`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `url`
---
-ALTER TABLE `url`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -136,12 +109,6 @@ ALTER TABLE `users`
 --
 ALTER TABLE `groups`
   MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `url`
---
-ALTER TABLE `url`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`

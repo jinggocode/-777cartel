@@ -11,12 +11,12 @@ class Url extends MY_Controller
 		parent::__construct();
 		$this->_accessable = true;
 		$this->load->helper(array('dump', 'utility')); 
-		$this->load->model('admin/url_model');
+		$this->load->model('admin/user_model');
 	} 
 	
 	public function index()
 	{  
-		$data['url'] = $this->url_model->get();
+		$data['user'] = $this->ion_auth->user()->row();
  
 		$this->render('user/url/index', $data);
 	}
@@ -29,9 +29,10 @@ class Url extends MY_Controller
 			$this->generateCsrf(); 
 			$this->render('user/home');
 		} else { 
+			$user = $this->ion_auth->user()->row();
 			$data = $this->input->post();  
- 
-			$insert = $this->url_model->insert($data);
+  
+			$insert = $this->user_model->update($data, $user->id);
 			if ($insert == false) {
 				echo "ada kesalahan";
 			} else {
@@ -51,9 +52,10 @@ class Url extends MY_Controller
 			$this->generateCsrf();
 			$this->render('user/home', $data);
 		} else {
+			$user = $this->ion_auth->user()->row();
 			$data = $this->input->post();  
 
-			$update = $this->url_model->update($data);
+			$update = $this->user_model->update($data, $user->id);
 			if ($update == false) {
 				echo "ada kesalahan";
 			} else {

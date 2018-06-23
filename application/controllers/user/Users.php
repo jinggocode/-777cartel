@@ -81,6 +81,7 @@ class Users extends MY_Controller
 	public function save()
 	{
 		$this->form_validation->set_rules('first_name', 'Nama', 'trim|required|max_length[20]'); 
+		$this->form_validation->set_rules('url', 'Url', 'trim|required|max_length[255]'); 
 		$this->form_validation->set_rules('username', 'Username', 'trim|required|max_length[10]|is_unique[users.username]',
         array(
                 'required'      => 'Harus di isi',
@@ -123,6 +124,7 @@ class Users extends MY_Controller
 	public function update()
 	{
 		$this->form_validation->set_rules('first_name', 'Nama', 'trim|required|max_length[20]'); 
+		$this->form_validation->set_rules('url', 'Url', 'trim|required|max_length[255]'); 
 		$this->form_validation->set_rules('username', 'Username', 'trim|required|max_length[10]');   
 		$this->form_validation->set_rules('password', 'Password', 'trim|min_length[6]|max_length[12]'); 
 		$this->form_validation->set_rules('password_confirm', 'Konfirmasi Password', 'trim|matches[password]');  

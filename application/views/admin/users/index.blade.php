@@ -45,10 +45,11 @@
           <table class="table table-hover table-striped">
               <thead>
                 <th style="width: 3%">No.</th> 
-                <th style="width: 30%">Nama</th>
+                <th style="width: 20%">Nama</th>
                 <th>Username</th>
                 <th>Hak Akses</th>  
-                <th>Aksi</th>
+                <th>Url</th>  
+                <th style="width: 30%">Aksi</th>
               </thead> 
               <?php if(empty($data)): ?>
                   <tr>
@@ -62,6 +63,7 @@
                     <td>{{$row->first_name}}</td> 
                     <td>{{$row->username}}</td> 
                     <td>{{$row->group->description}}</td>  
+                    <td>{{$row->url}}</td> 
                     <td> 
                       <a href="{{site_url('admin/users/edit/'.$row->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil-square-o"></i> Edit</a>
                       <a href="{{site_url('admin/users/delete/'.$row->id)}}" onclick="return confirm('apakah anda yakin?')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</a>
