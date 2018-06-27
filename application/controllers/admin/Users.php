@@ -21,7 +21,7 @@ class Users extends MY_Controller
 		// pagination
 		$filter = $this->session->userdata('filter_item');
 		$start = $this->uri->segment(4, 0);
-		$config['base_url'] = base_url() . 'admin/user/index/';
+		$config['base_url'] = base_url() . 'admin/users/index/';
  
 		// Class bootstrap pagination yang digunakan
 		$config['full_tag_open'] = "<ul class='pagination pagination-sm no-margin pull-right'>";
@@ -81,7 +81,7 @@ class Users extends MY_Controller
 	public function save()
 	{
 		$this->form_validation->set_rules('first_name', 'Nama', 'trim|required|max_length[20]'); 
-		$this->form_validation->set_rules('username', 'Username', 'trim|required|max_length[10]|is_unique[users.username]',
+		$this->form_validation->set_rules('username', 'Username', 'trim|required|max_length[50]|is_unique[users.username]',
         array(
                 'required'      => 'Harus di isi',
                 'is_unique'     => 'Username '.$this->input->post('username').' sudah ada'
@@ -122,7 +122,7 @@ class Users extends MY_Controller
 	public function update()
 	{
 		$this->form_validation->set_rules('first_name', 'Nama', 'trim|required|max_length[20]'); 
-		$this->form_validation->set_rules('username', 'Username', 'trim|required|max_length[10]');   
+		$this->form_validation->set_rules('username', 'Username', 'trim|required|max_length[50]');   
 		$this->form_validation->set_rules('password', 'Password', 'trim|min_length[6]|max_length[12]'); 
 		$this->form_validation->set_rules('password_confirm', 'Konfirmasi Password', 'trim|matches[password]');  
 
